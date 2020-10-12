@@ -12,20 +12,17 @@ export class ProductService {
      const products =  this.productModel.find()
         return products;
     }
-
   async getProduct( productID: string): Promise<Product> {
-
         const product = await this.productModel.findById(productID)
         return product;
 
     }
-    
-   async  createProduct(createProductDTO : CreateProductDTO ):Promise<Product>{
+  async  createProduct(createProductDTO : CreateProductDTO ):Promise<Product>{
         const product = new this.productModel(createProductDTO)
         return await product.save()
     }
-    deleteProduct(){
-
+   async  deleteProduct(productID: string):Promise<Product>{
+        const deletedProduct=   await this.productModel.findByIdAndDelete(productID)
+            return deletedProduct;
     }
-    
 }
