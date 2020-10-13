@@ -25,4 +25,9 @@ export class ProductService {
         const deletedProduct=   await this.productModel.findByIdAndDelete(productID)
             return deletedProduct;
     }
+    async updateProduct(productID : string , createProductDTO : CreateProductDTO): Promise<Product>{
+
+   const updatedProduct =   await     this.productModel.findByIdAndUpdate(productID, createProductDTO)
+   return updatedProduct;
+    }
 }
